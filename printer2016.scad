@@ -32,13 +32,22 @@ module threadedrod(L) {
     }
 }
 
-translate([2.5*25.4, 0.75*25.4, 0.5*25.4])
-    threadedrod(24*25.4);
-translate([2.5*25.4, (10-0.75)*25.4, 0.5*25.4])
-    threadedrod(24*25.4);
-translate([13.5*25.4, 0, 0]) {
+module drivenrod(L) {
+    color([0, 0.8, 1]) {
+        // stepper motors at the tops
+        translate([0, 0, (L-0.01)])
+            cylinder(d=2*25.4, h=2.2*25.4);
+    }
+    threadedrod(L);
+}
+
+translate([3*25.4, 0.75*25.4, 0.5*25.4])
+    drivenrod(24*25.4);
+translate([3*25.4, (10-0.75)*25.4, 0.5*25.4])
+    drivenrod(24*25.4);
+translate([13*25.4, 0, 0]) {
     translate([2.5*25.4, 0.75*25.4, 0.5*25.4])
-        threadedrod(24*25.4);
+        drivenrod(24*25.4);
     translate([2.5*25.4, (10-0.75)*25.4, 0.5*25.4])
-        threadedrod(24*25.4);
+        drivenrod(24*25.4);
 }
